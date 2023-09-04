@@ -1,0 +1,58 @@
+<div class="formContainer">
+  <h1>Faça o login</h1>
+  <form
+    class="forms"
+    (ngSubmit)="submit()"
+    [formGroup]="authForm"
+    #formDir="ngForm"
+  >
+    <div class="form-group name-group">
+      <label for="name">Nome:</label>
+      <input
+        type="text"
+        name="username"
+        formControlName="name"
+        id="name"
+        placeHolder="Nome de usuário"
+      />
+      <div class="errors" *ngIf="name!.errors && formDir.submitted">
+        <p *ngIf="name!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="name!.errors?.['minLengthError']">
+          Escreva no mínimo 3 caracteres!
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group pass-group">
+      <label for="password">Senha:</label>
+      <input
+        type="text"
+        name="password"
+        formControlName="password"
+        id="password"
+        placeHolder="Senha de usuário"
+      />
+      <div class="errors" *ngIf="password!.invalid && formDir.submitted">
+        <p *ngIf="password!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="password!.errors?.['minLengthError']">
+          Escreva o mínimo 6 caracteres!
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <p class="forgotPass">
+        Esqueceu a senha?<a routerLink="verification">Clique aqui!</a>
+      </p>
+      <p class="notAccount">
+        Não Possui conta?<a routerLink="register">Cadastre-se</a>
+      </p>
+    </div>
+    <button
+      type="submit"
+      class="sendBtn"
+      [disabled]="formDir.submitted && authForm.invalid"
+    >
+      Entrar
+    </button>
+  </form>
+</div>

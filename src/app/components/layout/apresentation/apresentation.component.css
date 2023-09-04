@@ -1,0 +1,53 @@
+.apContainer {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 30px 15px 30px;
+}
+
+a {
+  color: #000;
+  transition: all 0.35s;
+}
+
+.imageBox img {
+  max-width: 254px;
+  max-height: 125px;
+}
+
+.actions {
+  display: flex;
+  gap: 20px;
+}
+
+.actions .item {
+  text-align: center;
+}
+
+.actions .item img {
+  width: 25px;
+  height: 25px;
+}
+
+.actions .item a,
+.actions .item p {
+  font-size: 10px;
+  max-width: 120px;
+}
+
+a:hover {
+  color: var(--green);
+}
+
+@media (max-width: 955px) {
+  .apContainer {
+    display: none;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

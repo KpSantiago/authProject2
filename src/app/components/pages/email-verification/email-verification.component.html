@@ -1,0 +1,47 @@
+<div class="emContainer">
+  <div class="header">
+    <div class="back" (click)="route.navigate(['/'])">
+      <img src="../../../../assets/back.svg" alt="" />
+      <p>Voltar</p>
+    </div>
+    <div class="logo">
+      <img src="../../../../assets/standLogo.png" alt="" />
+    </div>
+  </div>
+  <form
+    (ngSubmit)="submit()"
+    [formGroup]="verificationForm"
+    #formDir="ngForm"
+    class="forms"
+  >
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input
+        type="email"
+        formControlName="email"
+        id="email"
+        placeholder="E-mail do usuário"
+      />
+    </div>
+    <div
+      class="errors"
+      *ngIf="formDir.submitted && verificationForm.invalid; else information"
+    >
+      <p *ngIf="email!.errors?.['required']">Este campo é obrigatório!</p>
+      <p *ngIf="email!.errors?.['minLengthError']">
+        Escreva o mínimo 5 caracteres!
+      </p>
+      <p *ngIf="email!.errors?.['email']">E-mail incorreto!</p>
+    </div>
+    <ng-template #information>
+      <div class="infos">
+        <p class="information">Informação:</p>
+        <p>
+          Precisamos do seu e-mail de usuário para que seja confirmado que você
+          já está cadastrado no sistema e possa trocar de senha.
+        </p>
+      </div>
+    </ng-template>
+    <button type="submit" class="sendBtn">Enviar</button>
+  </form>
+</div>

@@ -1,0 +1,87 @@
+<div class="formContainer">
+  <h1>Cadastre-se</h1>
+  <form
+    class="forms"
+    (ngSubmit)="submit()"
+    [formGroup]="authForm"
+    #formDir="ngForm"
+  >
+    <div class="form-group name-group">
+      <label for="name">Nome:</label>
+      <input
+        type="text"
+        name="username"
+        formControlName="name"
+        id="name"
+        placeHolder="Nome de usuário"
+      />
+      <div class="errors" *ngIf="name!.errors && formDir.submitted">
+        <p *ngIf="name!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="name!.errors?.['minLengthError']">
+          Escreva o mínimo 3 caracteres!
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group email-group" #emailGroup>
+      <label for="email">E-mail:</label>
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        id="email"
+        placeHolder="E-mail do usuário"
+      />
+      <div class="errors" *ngIf="email!.invalid && formDir.submitted">
+        <p *ngIf="email!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="email!.errors?.['minLengthError']">
+          Escreva o mínimo 5 caracteres!
+        </p>
+        <p *ngIf="email!.errors?.['email']">E-mail incorreto!</p>
+      </div>
+    </div>
+
+    <div class="form-group pass-group">
+      <label for="password">Senha:</label>
+      <input
+        type="text"
+        name="password"
+        formControlName="password"
+        id="password"
+        placeHolder="Senha de usuário"
+      />
+      <div class="errors" *ngIf="password!.invalid && formDir.submitted">
+        <p *ngIf="password!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="password!.errors?.['minLengthError']">
+          Escreva o mínimo 6 caracteres!
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group cpf-group" #cpfGroup>
+      <label for="cpf">CPF:</label
+      ><input
+        type="text"
+        formControlName="cpf"
+        name="cpf"
+        id="cpf"
+        placeHolder="CPF do usuário"
+      />
+      <div class="errors" *ngIf="cpf!.invalid && formDir.submitted">
+        <p *ngIf="cpf!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="cpf!.errors?.['minLengthError']">No mínimo 11 caracteres!</p>
+        <p *ngIf="cpf!.errors?.['maxLengthError']">No máximo 11 caracteres!</p>
+      </div>
+    </div>
+
+    <p class="form-group forgotPass">Esqueceu a senha?</p>
+
+    <button
+      type="submit"
+      class="sendBtn"
+      [disabled]="formDir.submitted && authForm.invalid"
+    >
+      Cadastrar
+    </button>
+  </form>
+</div>
