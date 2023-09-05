@@ -45,8 +45,8 @@ export class EmailVerificationComponent implements OnInit {
       email: this.verificationForm.get('email')?.value,
     };
 
-    await this.authService.sendEmail(email).subscribe((msg) => {
-      console.log(msg);
-    });
+    await this.authService.sendEmail(email).subscribe();
+
+    this.route.navigate(['/']);
   }
 }

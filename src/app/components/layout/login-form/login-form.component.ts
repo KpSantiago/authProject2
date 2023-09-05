@@ -13,29 +13,31 @@ export class LoginFormComponent implements OnInit {
 
   authForm!: FormGroup;
 
-  constructor(private FormBuider: FormBuilder) {}
+  constructor(private formBuider: FormBuilder) {}
 
   ngOnInit(): void {
-    this.authForm = this.FormBuider.group({
+    this.authForm = this.formBuider.group({
       id: [''],
-      name: ['', [Validators.required, CustomValidators.minLengthName]],
+      email: [
+        '',
+        [Validators.email, Validators.required, CustomValidators.minLengthPass],
+      ],
       password: ['', [Validators.required, CustomValidators.minLengthPass]],
     });
   }
 
-  get name() {
-    return this.authForm.get('name');
+  get email() {
+    return this.authForm.get('email');
   }
 
   get password() {
     return this.authForm.get('password');
   }
-
   submit() {
-    if (!this.authForm.valid) {
+    if (this.authForm.invalid) {
       return;
+    } else {
+      this.onSubmit.emit(this.authForm.value);
     }
-
-    this.onSubmit.emit(this.authForm.value);
   }
 }

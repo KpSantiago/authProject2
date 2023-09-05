@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     const user: IAuth = datas;
 
     await this.authService.register(user).subscribe((error) => {
-      console.log(error);
+      // console.log(error);
     });
 
     this.route.navigate(['/']);

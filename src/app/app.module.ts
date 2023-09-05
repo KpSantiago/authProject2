@@ -18,6 +18,7 @@ import { RegisterFormComponent } from './components/layout/register-form/registe
 import { ApresentationComponent } from './components/layout/apresentation/apresentation.component';
 import { EmailVerificationComponent } from './components/pages/email-verification/email-verification.component';
 import { NewPasswordComponent } from './components/pages/new-password/new-password.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NewPasswordComponent } from './components/pages/new-password/new-passwo
     ApresentationComponent,
     EmailVerificationComponent,
     NewPasswordComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

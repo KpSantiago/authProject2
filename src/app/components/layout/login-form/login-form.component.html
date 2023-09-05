@@ -6,20 +6,20 @@
     [formGroup]="authForm"
     #formDir="ngForm"
   >
-    <div class="form-group name-group">
-      <label for="name">Nome:</label>
+    <div class="form-group email-group">
+      <label for="email">E-mail:</label>
       <input
-        type="text"
-        name="username"
-        formControlName="name"
-        id="name"
-        placeHolder="Nome de usuário"
+        type="email"
+        formControlName="email"
+        id="email"
+        placeHolder="E-mail do usuário"
       />
-      <div class="errors" *ngIf="name!.errors && formDir.submitted">
-        <p *ngIf="name!.errors?.['required']">Este campo é obrigatório!</p>
-        <p *ngIf="name!.errors?.['minLengthError']">
-          Escreva no mínimo 3 caracteres!
+      <div class="errors" *ngIf="email!.errors && formDir.submitted">
+        <p *ngIf="email!.errors?.['required']">Este campo é obrigatório!</p>
+        <p *ngIf="email!.errors?.['minLengthError']">
+          Escreva no mínimo 5 caracteres!
         </p>
+        <p *ngIf="email!.errors?.['email']">E-mail incorreto!</p>
       </div>
     </div>
 
@@ -27,7 +27,6 @@
       <label for="password">Senha:</label>
       <input
         type="text"
-        name="password"
         formControlName="password"
         id="password"
         placeHolder="Senha de usuário"
@@ -47,12 +46,6 @@
         Não Possui conta?<a routerLink="register">Cadastre-se</a>
       </p>
     </div>
-    <button
-      type="submit"
-      class="sendBtn"
-      [disabled]="formDir.submitted && authForm.invalid"
-    >
-      Entrar
-    </button>
+    <button type="submit" class="sendBtn">Entrar</button>
   </form>
 </div>

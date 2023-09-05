@@ -30,4 +30,27 @@ export class AuthService {
       }
     );
   }
+
+  updatePass(
+    password: { password: string },
+    id: number
+  ): Observable<{ password: string }> {
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.put<{ password: string }>(
+      `${this.baseApiUrl}/forgot-pass/${id}`,
+      password,
+      {
+        headers: httpHeaders,
+      }
+    );
+  }
+
+  login(data: IAuth): Observable<IAuth> {
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post<IAuth>(`${this.baseApiUrl}/Login`, data, {
+      headers: httpHeaders,
+    });
+  }
 }

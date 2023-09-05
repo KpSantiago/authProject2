@@ -5,12 +5,14 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { EmailVerificationComponent } from './components/pages/email-verification/email-verification.component';
 import { NewPasswordComponent } from './components/pages/new-password/new-password.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verification', component: EmailVerificationComponent },
   { path: 'new/:id', component: NewPasswordComponent },
+  { path: 'dashboard/:token', component: DashboardComponent },
 ];
 
 @NgModule({

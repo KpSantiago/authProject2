@@ -60,22 +60,7 @@ export class RegisterFormComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     } else {
-      // const datas: IAuth = this.authForm.value;
-      // const formData = new FormData();
-
-      // formData.append('name', datas.name);
-      // formData.append('email', datas.email!);
-      // formData.append('password', datas.password);
-      // formData.append('cpf', datas.cpf!);
-
-      // console.log(this.authForm.value);
-
-      this.formValues.name = this.authForm.get('name')?.value;
-      this.formValues.email = this.authForm.get('email')?.value;
-      this.formValues.password = this.authForm.get('password')?.value;
-      this.formValues.cpf = this.authForm.get('cpf')?.value;
-
-      this.onSubmit.emit(this.formValues);
+      this.onSubmit.emit(this.authForm.value);
     }
   }
 }
