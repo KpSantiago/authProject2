@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'verification', component: EmailVerificationComponent },
   { path: 'new/:id', component: NewPasswordComponent },
-  { path: 'dashboard/:token', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

@@ -15,11 +15,13 @@ export class RegisterComponent implements OnInit {
 
   async createHandler(datas: IAuth) {
     const user: IAuth = datas;
-
-    await this.authService.register(user).subscribe((error) => {
-      // console.log(error);
-    });
-
-    this.route.navigate(['/']);
+    await this.authService.register(user).subscribe(
+      () => {
+        this.route.navigate(['/']);
+      },
+      (erro) => {
+        console.log(erro);
+      }
+    );
   }
 }

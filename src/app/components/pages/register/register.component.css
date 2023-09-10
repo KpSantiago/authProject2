@@ -1,16 +1,40 @@
-.registerContainer {
-  max-width: 935px;
-  height: 422px;
+.rContainer {
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerContainer {
+  max-width: 85vw;
+  height: 65vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "aprs reg reg";
   border-radius: 20px;
   box-shadow: 0 0 50px 2px rgba(0, 0, 0, 0.25);
 }
-@media (max-width: 955px) {
+
+app-apresentation {
+  grid-area: aprs;
+}
+
+app-register-form {
+  grid-area: reg;
+}
+
+@media (max-width: 993px) {
   .registerContainer {
-    width: 70vw;
     height: fit-content;
     display: flex;
     flex-direction: row;
     justify-items: center;
+  }
+}
+
+@media (max-width: 778px) {
+  .registerContainer {
+    box-shadow: none;
   }
 }

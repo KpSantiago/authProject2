@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, RequiredValidator } from '@angular/forms';
 
 export class CustomValidators {
   static minLengthName(value: FormControl, min = 3) {
@@ -55,6 +55,24 @@ export class CustomValidators {
     if (value && value.value !== '') {
       if (valueArray.length > max) {
         return { maxLengthError: true };
+      }
+    }
+
+    return null;
+  }
+
+  static requiredValidator(value: FormControl, min = 1) {
+    if (!value || value.value == '') {
+      return { requiredError: true };
+    }
+
+    return null;
+  }
+
+  static requiredValidatorOpts(value: FormControl, min = 1) {
+    if (value && value.value !== '') {
+      if (value.value < min) {
+        return { requiredErrorOpts: true };
       }
     }
 

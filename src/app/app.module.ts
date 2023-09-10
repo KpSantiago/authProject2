@@ -10,6 +10,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // http dependence
 import { HttpClientModule } from '@angular/common/http';
 
+// Cookies dependece
+import { CookieService } from 'ngx-cookie-service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
@@ -19,6 +22,8 @@ import { ApresentationComponent } from './components/layout/apresentation/aprese
 import { EmailVerificationComponent } from './components/pages/email-verification/email-verification.component';
 import { NewPasswordComponent } from './components/pages/new-password/new-password.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { ProfileComponent } from './components/layout/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,8 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     EmailVerificationComponent,
     NewPasswordComponent,
     DashboardComponent,
+    HeaderComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,7 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

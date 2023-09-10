@@ -1,5 +1,115 @@
-<h1>Página em andamento</h1>
-<div class="back" (click)="route.navigate(['/'])">
-  <img src="../../../../assets/back.svg" alt="" />
-  <p>Voltar</p>
+<div class="dashboardContainer">
+  <app-header></app-header>
+  <div class="main">
+    <div class="table">
+      <table #table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>N. de acesso</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usersArr">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.Roles!.Role }}</td>
+            <td>ativo</td>
+            <td>
+              <img
+                src="../../../../assets/edit.svg"
+                (click)="editAction(user.id!)"
+                alt="editar"
+                title="editar"
+                *ngIf="roleId == '4'"
+                class="actions"
+              />
+              <img
+                src="../../../../assets/block.svg"
+                alt="bloqueado"
+                title="bloqueado"
+                *ngIf="roleId != '4'"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form
+      class="forms"
+      #form
+      (ngSubmit)="edit()"
+      #formDir="ngForm"
+      [formGroup]="editForm"
+    >
+      <input
+        type="hidden"
+        value="{{ userEdit ? userEdit[0].email : '' }}"
+        #emailInp
+      />
+
+      <h3>Alteração de n. de acesso</h3>
+
+      <div class="form-group email">
+        <label for="email">E-mail:</label>
+        <input
+          type="text"
+          disabled
+          value="{{ userEdit ? userEdit[0].email : '' }}"
+        />
+      </div>
+      <div class="form-group id">
+        <label for="id">ID:</label>
+        <input
+          type="text"
+          disabled
+          value="{{ userEdit ? userEdit[0].id : '' }}"
+        />
+      </div>
+      <div class="form-group name">
+        <label for="name">Nome:</label>
+        <input
+          type="text"
+          disabled
+          value="{{ userEdit ? userEdit[0].name : '' }}"
+        />
+      </div>
+      <div class="form-group role">
+        <label for="role">Nível de acesso:</label>
+        <select formControlName="roles">
+          <option disabled selected>Escolha o n. de acesso</option>
+          <option value="1">Cliente</option>
+          <option value="2">Comerciante</option>
+          <option value="3">Projetista</option>
+          <option value="4">Administrador</option>
+        </select>
+        <div
+          class="errors"
+          *ngIf="
+            formDir.submitted &&
+            (editForm.get('roles')!.errors || email!.errors)
+          "
+        >
+          <p
+            *ngIf="editForm.get('roles')!.errors?.['requiredError'] && !editForm.get('email')!.errors"
+          >
+            Selecione uma opção!
+          </p>
+          <p *ngIf="editForm.get('email')!.errors?.['required']">
+            Usuário indefinido!
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group button">
+        <button>Alterar</button>
+      </div>
+    </form>
+  </div>
 </div>

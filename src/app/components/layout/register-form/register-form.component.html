@@ -44,7 +44,7 @@
     <div class="form-group pass-group">
       <label for="password">Senha:</label>
       <input
-        type="text"
+        type="password"
         name="password"
         formControlName="password"
         id="password"
@@ -73,8 +73,6 @@
         <p *ngIf="cpf!.errors?.['maxLengthError']">No máximo 11 caracteres!</p>
       </div>
     </div>
-
-    <p class="form-group forgotPass">Esqueceu a senha?</p>
 
     <button type="submit" class="sendBtn">Cadastrar</button>
   </form>

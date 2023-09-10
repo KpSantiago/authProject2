@@ -1,25 +1,34 @@
 .formContainer {
+  /* background-color: #003604; */
   height: 100%;
-  width: calc(935px - 378px);
+  width: 100%;
   border-left: 1px solid rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  justify-content: space-around;
+  padding: 8px 30px;
 }
 
 .forms {
+  /* background-color: aqua; */
+  width: 100%;
+  height: 70%;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
     "name email"
     "pass cpf"
-    "forgotPass notAccount"
     "btn .";
-  gap: 30px;
-  margin-top: 30px;
+  column-gap: 20px;
+  row-gap: 45px;
+  padding: 30px 0;
 }
 
 .forms .form-group {
+  width: 100%;
+  height: fit-content;
   font-size: 14px;
   display: grid;
 }
@@ -32,7 +41,7 @@
 }
 
 .form-group input {
-  width: 230px;
+  width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
@@ -49,15 +58,6 @@
 }
 .forms .cpf-group {
   grid-area: cpf;
-}
-
-.forgotPass {
-  grid-area: forgotPass;
-}
-
-.notAccount {
-  grid-area: notAccount;
-  font-size: 14px;
 }
 
 .sendBtn {
@@ -77,10 +77,14 @@
   background-color: #003604;
 }
 
-@media (max-width: 955px) {
+@media (max-width: 993px) {
   .formContainer {
-    width: fit-content;
+    width: 70vw;
     border: none;
+  }
+
+  .formContainer h1 {
+    border-bottom: 2px solid var(--green);
   }
 
   .forms {
@@ -94,14 +98,17 @@
 }
 
 @media (max-width: 778px) {
-  .registerContainer {
-    display: flex;
-    justify-content: center;
+  .formContainer {
+    border: 1px solid black;
+    border-radius: 5px;
   }
+
   .forms {
+    max-width: 350px;
+    height: 100%;
     display: flex;
-    flex-flow: column;
-    align-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
     margin: 30px 0 0 0;
   }
 }
@@ -111,12 +118,30 @@
     font-size: 30px;
   }
 
-  .formContainer .forms input {
-    width: 90%;
+  .forms {
+    width: 100%;
+    height: 100%;
   }
 
-  .notAccount {
-    font-size: 13px;
+  .formContainer .forms input {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 4px 15px;
+  }
+
+  .formContainer .forms .form-group label {
+    width: 0;
+    height: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border: none;
+  }
+
+  .sendBtn {
+    height: 30px;
+    width: 100px;
+    font-size: 0.92rem;
   }
 }
 

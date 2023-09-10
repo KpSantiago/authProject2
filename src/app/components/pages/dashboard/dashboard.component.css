@@ -1,0 +1,250 @@
+.dashboardContainer {
+  background-color: #f7f7f7;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+
+.main {
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 90px;
+}
+
+table {
+  background-color: #fff;
+  width: 100%;
+  height: fit-content;
+  border: 1px solid black;
+  border-spacing: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.25);
+}
+
+th,
+td {
+  padding: 8px;
+}
+tr:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+tr:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+:where(tr, td, th) {
+  border: 1px solid black;
+}
+
+td {
+  text-align: center;
+}
+
+td img {
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  gap: 45px;
+  padding: 0 60px;
+}
+
+.forms {
+  background-color: #fff;
+  max-height: 275px;
+  display: grid;
+  grid-template-areas: "title title title" "email email email" "id name name" "role role button";
+  border-radius: 10px;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.25);
+  gap: 10px;
+  padding: 15px 15px 30px 15px;
+}
+
+.forms h3 {
+  grid-area: title;
+  width: 100%;
+  text-align: center;
+}
+.forms .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms .form-group input {
+  width: 100%;
+  padding: 0 5px;
+}
+
+.forms .email {
+  grid-area: email;
+}
+
+.forms .id {
+  grid-area: id;
+}
+
+.forms .name {
+  grid-area: name;
+}
+
+.forms .role {
+  grid-area: role;
+  position: relative;
+}
+
+.errors {
+  width: 100%;
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+}
+
+.errors p {
+  width: 300px;
+}
+
+.forms .button {
+  grid-area: button;
+  height: 82%;
+  padding-top: 23px;
+}
+
+.forms .button button {
+  background-color: #295e59;
+  color: #fff;
+  width: 80px;
+  height: 26px;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+@media (max-width: 1376px) {
+  .dashboardContainer .main {
+    flex-direction: column-reverse;
+  }
+
+  .forms {
+    max-width: 40vw;
+  }
+
+  .forms .form-group {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 788px) {
+  .dashboardContainer .main {
+    align-items: center;
+  }
+
+  .table {
+    min-width: 90vw;
+    overflow: auto;
+    scroll-behavior: smooth;
+    margin-right: 30px;
+    margin-left: 50px;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: #e1e1e1;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #295e59;
+  }
+
+  .table::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  table {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    border-radius: 0;
+  }
+
+  tr,
+  th,
+  td {
+    border-radius: 0px !important;
+  }
+
+  td,
+  th {
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  tbody tr td:first-child {
+    min-width: 60px;
+  }
+
+  td,
+  th {
+    padding: 8px;
+  }
+
+  thead tr {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead tr th {
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
+}
+
+@media (max-width: 743px) {
+  .dashboardContainer .main {
+    flex-direction: column-reverse;
+  }
+
+  .forms {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 625px) {
+  .dashboardContainer {
+    padding: 90px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .forms {
+    min-width: 90vw;
+  }
+}

@@ -9,7 +9,7 @@
 }
 
 a {
-  color: blue;
+  color: var(--green);
   transition: all 0.3s;
 }
 
@@ -18,12 +18,16 @@ a:hover {
 }
 
 .forms {
+  width: 100%;
+  height: 100%;
   display: grid;
-  gap: 30px;
+  gap: 45px;
   margin-top: 30px;
 }
 
 .forms .form-group {
+  width: 100%;
+  height: fit-content;
   font-size: 14px;
   display: grid;
 }
@@ -36,7 +40,7 @@ a:hover {
 }
 
 .form-group input {
-  width: 230px;
+  max-width: 100%;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
@@ -62,10 +66,20 @@ a:hover {
   background-color: #003604;
 }
 
-@media (max-width: 955px) {
+.forgotPass,
+.notAccount {
+  width: fit-content;
+  max-width: 100%;
+}
+
+@media (max-width: 993px) {
   .formContainer {
-    max-width: 400px;
+    width: 70vw;
     border: none;
+  }
+
+  .formContainer h1 {
+    border-bottom: 2px solid var(--green);
   }
 
   .forms {
@@ -79,7 +93,14 @@ a:hover {
 }
 
 @media (max-width: 778px) {
+  .formContainer {
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
   .forms {
+    max-width: 400px;
+    height: 100%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -92,16 +113,39 @@ a:hover {
     font-size: 30px;
   }
 
-  .formContainer .forms input {
-    width: 90%;
+  .forms {
+    width: 100%;
+    height: 100%;
   }
 
-  .notAccount {
-    font-size: 13px;
+  .formContainer .forms input {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 4px 15px;
+  }
+
+  .formContainer .forms .form-group label {
+    width: 0;
+    height: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border: none;
+  }
+
+  .sendBtn {
+    height: 30px;
+    width: 100px;
+    font-size: 0.92rem;
   }
 }
 
 @media (max-width: 353px) {
+  .formContainer {
+    transform: scale(0.8);
+    height: fit-content;
+    width: 99vw;
+  }
   .formContainer h1 {
     font-size: 25px;
   }

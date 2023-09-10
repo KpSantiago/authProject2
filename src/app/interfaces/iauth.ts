@@ -5,5 +5,6 @@ export interface IAuth {
   password: string;
   cpf?: string;
   roleId?: string;
+  Roles?: { Role: string };
   acessToken?: string;
 }

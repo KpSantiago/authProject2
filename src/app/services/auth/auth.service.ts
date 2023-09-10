@@ -53,4 +53,20 @@ export class AuthService {
       headers: httpHeaders,
     });
   }
+
+  getUsers(token: string): Observable<any> {
+    return this.http.get<any>(`${this.baseApiUrl}/Usuarios`, {
+      headers: {
+        authorization: 'Bearer ' + token,
+      },
+    });
+  }
+
+  updateUser(user: any, id: string, token: string): Observable<any> {
+    return this.http.put<any>(`${this.baseApiUrl}/attUsers/${id}`, user, {
+      headers: {
+        authorization: 'Bearer ' + token,
+      },
+    });
+  }
 }
