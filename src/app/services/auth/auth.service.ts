@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseApiUrl = 'http://localhost:3333';
+  private baseApiUrl = 'https://auth-api-gbl5.onrender.com';
 
   constructor(private http: HttpClient) {}
 
