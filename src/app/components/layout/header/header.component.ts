@@ -18,19 +18,21 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService
-      .getUsers(this.cookieService.get('token'))
+      .getUsers(this.cookieService.get('ashlesd'))
       .subscribe((data) => {
         const users = data;
         this.userName = users
-          .filter((user: IAuth) => user.id == this.cookieService.get('id'))
+          .filter(
+            (user: IAuth) => user.id == this.cookieService.get('fdsgescr')
+          )
           .map((user: IAuth) => user.name);
       });
   }
 
   logout(): void {
-    this.cookieService.delete('token');
-    this.cookieService.delete('roleId');
-    this.cookieService.delete('id');
+    this.cookieService.delete('ashlesd');
+    this.cookieService.delete('daskde');
+    this.cookieService.delete('fdsgescr');
     setTimeout(() => {
       location.reload();
     }, 100);

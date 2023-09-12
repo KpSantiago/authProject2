@@ -2,7 +2,7 @@
   background-color: #f7f7f7;
   width: 100%;
   max-width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   min-height: 100vh;
   padding-bottom: 90px;
 }
@@ -116,17 +116,6 @@ td img {
   position: relative;
 }
 
-.errors {
-  width: 100%;
-  position: absolute;
-  bottom: -15px;
-  left: 0;
-}
-
-.errors p {
-  width: 300px;
-}
-
 .forms .button {
   grid-area: button;
   height: 82%;
@@ -205,13 +194,26 @@ td img {
     text-overflow: ellipsis;
   }
 
-  tbody tr td:first-child {
-    min-width: 60px;
+  tbody tr {
+    display: flex;
+    flex-direction: column;
   }
 
-  td,
-  th {
-    padding: 8px;
+  tbody {
+    display: flex;
+  }
+
+  tbody tr td:first-child {
+    width: 100%;
+  }
+
+  tbody img {
+    width: 30px;
+  }
+
+  th,
+  td {
+    height: 50px;
   }
 
   thead tr {

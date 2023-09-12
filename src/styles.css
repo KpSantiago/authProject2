@@ -15,12 +15,15 @@ body {
   height: fit-content;
 }
 
+/* .errors {
+  position: absolute;
+  bottom: min(-60%);
+  left: 0;
+} */
+
 .errors p {
   width: 115%;
   color: #f00;
-  position: absolute;
-  bottom: -60%;
-  left: 0;
 }
 
 h1 {

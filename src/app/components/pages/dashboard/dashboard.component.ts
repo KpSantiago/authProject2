@@ -34,25 +34,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   usersArr!: IAuth[];
   userEdit!: IAuth[];
-  roleId = this.cookieService.get('roleId');
+  roleId = this.cookieService.get('daskde');
 
   ngOnInit(): void {
     // verification
-    if (!this.cookieService.get('token')) {
-      this.cookieService.delete('roleId');
+    if (!this.cookieService.get('ashlesd')) {
+      this.cookieService.delete('daskde');
       this.route.navigate(['/']);
     }
 
     // request of users
     this.authService
-      .getUsers(this.cookieService.get('token'))
+      .getUsers(this.cookieService.get('ashlesd'))
       .subscribe((data) => {
         if (data) {
           this.usersArr = data;
         } else {
-          this.cookieService.delete('token');
-          this.cookieService.delete('roleId');
-          this.cookieService.delete('id');
+          this.cookieService.delete('ashlesd');
+          this.cookieService.delete('daskde');
+          this.cookieService.delete('fdsgescr');
           this.route.navigate(['/']);
         }
       });
@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.cookieService.get('roleId') != '4') {
+    if (this.cookieService.get('daskde') != '4') {
       this.form.nativeElement.style.display = 'none';
     }
   }
@@ -83,6 +83,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .filter((user: IAuth) => user.id! == id)
       .map((user) => user);
     this.emailUser = this.emailInp.nativeElement.value;
+    this.editForm?.patchValue({ roles: this.userEdit[0].roleId! });
     this.setEmail();
   }
 
@@ -102,11 +103,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     };
 
     await this.authService
-      .updateUser(user, this.userEdit[0].id!, this.cookieService.get('token'))
+      .updateUser(user, this.userEdit[0].id!, this.cookieService.get('ashlesd'))
       .subscribe();
 
     setTimeout(() => {
       location.reload();
-    }, 10);
+    }, 100);
   }
 }
