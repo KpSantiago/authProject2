@@ -106,8 +106,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .updateUser(user, this.userEdit[0].id!, this.cookieService.get('ashlesd'))
       .subscribe();
 
-    setTimeout(() => {
-      location.reload();
-    }, 100);
+    this.route.navigate(['dashboard']);
   }
 }

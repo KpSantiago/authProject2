@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { IAuth } from 'src/app/interfaces/iauth';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,8 +35,6 @@ export class HeaderComponent implements OnInit {
     this.cookieService.delete('ashlesd');
     this.cookieService.delete('daskde');
     this.cookieService.delete('fdsgescr');
-    setTimeout(() => {
-      location.reload();
-    }, 100);
+    this.route.navigate(['/']);
   }
 }
