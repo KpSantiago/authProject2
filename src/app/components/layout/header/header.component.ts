@@ -31,6 +31,10 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  redirect(): void {
+    this.route.navigate([`profile/${this.cookieService.get('fdsgescr')}`]);
+  }
+
   logout(): void {
     this.cookieService.delete('ashlesd');
     this.cookieService.delete('daskde');

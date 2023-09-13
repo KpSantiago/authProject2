@@ -1,1 +1,7 @@
-<p>profile works!</p>
+<div>
+  <p>Página em andamento</p>
+  <p *ngIf="user">
+    User: <strong>{{ user[0].name }}</strong>
+  </p>
+  <button (click)="redirect()">Voltar</button>
+</div>

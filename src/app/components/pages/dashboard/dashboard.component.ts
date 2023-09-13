@@ -44,18 +44,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     // request of users
-    this.authService
-      .getUsers(this.cookieService.get('ashlesd'))
-      .subscribe((data) => {
-        if (data) {
-          this.usersArr = data;
-        } else {
-          this.cookieService.delete('ashlesd');
-          this.cookieService.delete('daskde');
-          this.cookieService.delete('fdsgescr');
-          this.route.navigate(['/']);
-        }
-      });
+    this.requestUsers();
 
     // edit form validation
     this.editForm = this.formBuilder.group({
@@ -76,6 +65,26 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.cookieService.get('daskde') != '4') {
       this.form.nativeElement.style.display = 'none';
     }
+  }
+
+  requestUsers(): void {
+    this.authService
+      .getUsers(this.cookieService.get('ashlesd'))
+      .subscribe((data) => {
+        if (data) {
+          this.usersArr = data;
+        } else {
+          this.cookieService.delete('ashlesd');
+          this.cookieService.delete('daskde');
+          this.cookieService.delete('fdsgescr');
+          this.route.navigate(['/']);
+        }
+      });
+  }
+
+  // actions
+  cancel(): void {
+    location.reload();
   }
 
   editAction(id: string) {
@@ -106,6 +115,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .updateUser(user, this.userEdit[0].id!, this.cookieService.get('ashlesd'))
       .subscribe();
 
-    this.route.navigate(['dashboard']);
+    setTimeout(() => {
+      location.reload();
+    }, 25);
+  }
+
+  async searchUsers(event: any) {
+    const value = event.target.value;
+
+    this.usersArr = this.usersArr
+      .filter((users) => {
+        return users.name.toLowerCase().includes(value.toLowerCase());
+      })
+      .map((users) => users);
   }
 }
