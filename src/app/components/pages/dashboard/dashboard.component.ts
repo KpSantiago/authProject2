@@ -137,16 +137,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   editAction(id: string) {
-    this.userEdit = this.usersArr
-      .filter((user: IAuth) => user.id! == id)
-      .map((user) => user);
-    this.emailUser = this.emailInp.nativeElement.value;
-    this.editForm?.patchValue({ roles: this.userEdit[0].roleId! });
-    this.setEmail();
-  }
-
-  setEmail() {
-    this.editForm.patchValue({ email: this.userEdit[0].email });
+    this.route.navigate([`edit/${id}`]);
   }
 
   async edit() {
