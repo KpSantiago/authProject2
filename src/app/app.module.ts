@@ -24,6 +24,9 @@ import { NewPasswordComponent } from './components/pages/new-password/new-passwo
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { ProfileComponent } from './components/layout/profile/profile.component';
+import { UsersComponent } from './components/layout/users/users.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditUserComponent } from './components/pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { ProfileComponent } from './components/layout/profile/profile.component'
     DashboardComponent,
     HeaderComponent,
     ProfileComponent,
+    UsersComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,7 @@ import { ProfileComponent } from './components/layout/profile/profile.component'
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    FontAwesomeModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

@@ -8,8 +8,8 @@
 }
 
 .registerContainer {
-  max-width: 85vw;
-  height: 65vh;
+  max-width: 80vw;
+  min-height: 65vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "aprs reg reg";

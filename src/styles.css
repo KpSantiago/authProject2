@@ -62,3 +62,120 @@ h1 {
     width: 90%;
   }
 }
+
+/* @media (max-width: 788px) {
+  .dashboardContainer .main {
+    align-items: center;
+  }
+
+  .table {
+    min-width: 90vw;
+    overflow: auto;
+    scroll-behavior: smooth;
+    margin-right: 30px;
+    margin-left: 50px;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: #e1e1e1;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #295e59;
+  }
+
+  .table::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  table {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    border-radius: 0;
+  }
+
+  tr,
+  th,
+  td {
+    border-radius: 0px !important;
+  }
+
+  td,
+  th {
+    min-width: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  tbody tr {
+    display: flex;
+    flex-direction: column;
+  }
+
+  tbody {
+    display: flex;
+  }
+
+  tbody tr td:first-child {
+    width: 100%;
+  }
+
+  tbody img {
+    width: 30px;
+  }
+
+  th,
+  td {
+    height: 50px;
+  }
+
+  thead tr {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  thead tr th {
+    height: 100%;
+    display: grid;
+    place-items: center;
+  }
+}
+
+@media (max-width: 743px) {
+  .dashboardContainer .main {
+    flex-direction: column-reverse;
+  }
+
+  .forms {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 625px) {
+  .dashboardContainer {
+    padding: 90px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .forms:first-child {
+    width: fit-content;
+  }
+
+  .form-group input {
+    width: 100%;
+  }
+} */
+
+::-webkit-scrollbar {
+  width: 6.5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #005825;
+}

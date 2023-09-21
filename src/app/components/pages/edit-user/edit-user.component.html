@@ -1,0 +1,49 @@
+<div class="editContainer" #editContainer>
+  <app-header></app-header>
+  <div class="main">
+    <form class="user" #form #formDir="ngForm" [formGroup]="editForm">
+      <div class="profile">
+        <img src="../../../../assets/profile.svg" alt="" />
+        <p>{{ user ? user[0].name : "Carregando..." }}</p>
+      </div>
+      <div class="roleSelect">
+        <strong>N. de acesso:</strong>
+        <select formControlName="roles">
+          <option disabled>Escolha o n. de acesso</option>
+          <option value="1">Cliente</option>
+          <option value="2">Comerciante</option>
+          <option value="3">Projetista</option>
+          <option value="4">Administrador</option>
+        </select>
+        <div
+          class="errors"
+          *ngIf="
+            formDir.submitted &&
+            (editForm.get('roles')!.errors || email!.errors)
+          "
+        >
+          <p
+            *ngIf="editForm.get('roles')!.errors?.['requiredError'] && !editForm.get('email')!.errors"
+          >
+            Selecione uma opção!
+          </p>
+          <p *ngIf="editForm.get('email')!.errors?.['required']">
+            Usuário indefinido!
+          </p>
+        </div>
+      </div>
+      <p class="email">
+        <strong>E-mail:</strong
+        ><span>{{ user ? user[0].email : "Carregando..." }}</span>
+      </p>
+      <p class="cpf">
+        <strong>CPF:</strong
+        ><span>{{ user ? user[0].cpf : "Carregando..." }}</span>
+      </p>
+      <div class="form-group button">
+        <button (click)="edit()">Alterar</button>
+        <button (click)="cancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

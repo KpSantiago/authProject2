@@ -1,149 +1,56 @@
-<div class="dashboardContainer">
+<div class="dashboardContainer" #dashboard>
   <app-header></app-header>
   <div class="main">
-    <div class="table">
-      <table #table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>N. de acesso</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="!userEdit; else tr">
-          <tr *ngFor="let user of usersArr">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.Roles!.Role }}</td>
-            <td>ativo</td>
-            <td>
-              <img
-                src="../../../../assets/edit.svg"
-                (click)="editAction(user.id!)"
-                alt="editar"
-                title="editar"
-                *ngIf="roleId == '4'"
-                class="actions"
-              />
-              <img
-                src="../../../../assets/block.svg"
-                alt="bloqueado"
-                title="bloqueado"
-                *ngIf="roleId != '4'"
-              />
-            </td>
-          </tr>
-        </tbody>
-        <ng-template #tr>
-          <tbody>
-            <tr *ngFor="let user of userEdit" class="editUser">
-              <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.Roles!.Role }}</td>
-              <td>ativo</td>
-              <td>
-                <img
-                  src="../../../../assets/edit.svg"
-                  (click)="editAction(user.id!)"
-                  alt="editar"
-                  title="editar"
-                  *ngIf="roleId == '4'"
-                  class="actions"
-                />
-                <img
-                  src="../../../../assets/block.svg"
-                  alt="bloqueado"
-                  title="bloqueado"
-                  *ngIf="roleId != '4'"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </ng-template>
-      </table>
+    <div #table class="table">
+      <app-users></app-users>
     </div>
-    <div class="actionsAndFilters">
-      <form class="forms" #form #formDir="ngForm" [formGroup]="editForm">
-        <input
-          type="hidden"
-          value="{{ userEdit ? userEdit[0].email : '' }}"
-          #emailInp
-        />
 
-        <h3>Alteração de n. de acesso</h3>
-        <div class="form-group email">
-          <label for="email">E-mail:</label>
-          <input
-            type="text"
-            disabled
-            value="{{ userEdit ? userEdit[0].email : '' }}"
-          />
-        </div>
-        <div class="form-group id">
-          <label for="id">ID:</label>
-          <input
-            type="text"
-            disabled
-            value="{{ userEdit ? userEdit[0].id : '' }}"
-          />
-        </div>
-        <div class="form-group name">
-          <label for="name">Nome:</label>
-          <input
-            type="text"
-            disabled
-            value="{{ userEdit ? userEdit[0].name : '' }}"
-          />
-        </div>
-        <div class="form-group role">
-          <label for="role">Nível de acesso:</label>
-          <select formControlName="roles">
-            <option disabled selected>Escolha o n. de acesso</option>
-            <option value="1">Cliente</option>
-            <option value="2">Comerciante</option>
-            <option value="3">Projetista</option>
-            <option value="4">Administrador</option>
-          </select>
-          <div
-            class="errors"
-            *ngIf="
-              formDir.submitted &&
-              (editForm.get('roles')!.errors || email!.errors)
-            "
-          >
-            <p
-              *ngIf="editForm.get('roles')!.errors?.['requiredError'] && !editForm.get('email')!.errors"
-            >
-              Selecione uma opção!
-            </p>
-            <p *ngIf="editForm.get('email')!.errors?.['required']">
-              Usuário indefinido!
-            </p>
+    <ng-template #error>
+      <div
+        class="errors"
+        [ngStyle]="{ 'min-width': 'fit-content', 'margin-right': '30%' }"
+      >
+        <p>Usuário não encontrado! Verifique se você pesquisou corretamente.</p>
+      </div>
+    </ng-template>
+
+    <div class="actionsAndFilters">
+      <form class="forms acoes">
+        <h3>Ações</h3>
+        <div class="form-group">
+          <label for="search"> Buscar usuário:</label>
+          <div class="searchInput">
+            <input
+              type="search"
+              id="search"
+              class="search"
+              (input)="searchUsers($event)"
+            />
+            <button type="submit" (click)="requestUsers()">Cancelar</button>
           </div>
         </div>
-
-        <div class="form-group button">
-          <button (click)="edit()">Alterar</button>
-          <button (click)="cancel()">Cancelar</button>
-        </div>
-      </form>
-      <form class="forms">
-        <h3>Filtros</h3>
         <div class="form-group">
-          <input
-            type="search"
-            id="search"
-            class="search"
-            placeholder="Buscar usuário"
-            (input)="searchUsers($event)"
-          />
-
-          <button type="submit" (click)="requestUsers()">Cancelar</button>
+          <div class="theme">Alterar tema:</div>
+          <div class="t">
+            <a href="dashboard" (click)="lightTheme()">
+              <fa-icon [icon]="sun"></fa-icon>
+              Claro
+            </a>
+          </div>
+          <div class="t">
+            <a href="dashboard?theme=night">
+              <fa-icon [icon]="moon"></fa-icon>
+              Escuro
+            </a>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="filter">Filtros:</div>
+          <p><input type="checkbox" name="id" value="id" />Filtar por ID</p>
+          <p>
+            <input type="checkbox" name="roleId" value="roleId" />Filtrar por
+            nível de acesso
+          </p>
         </div>
       </form>
     </div>

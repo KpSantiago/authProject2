@@ -7,6 +7,7 @@ import { EmailVerificationComponent } from './components/pages/email-verificatio
 import { NewPasswordComponent } from './components/pages/new-password/new-password.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { ProfileComponent } from './components/layout/profile/profile.component';
+import { EditUserComponent } from './components/pages/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'new/:id', component: NewPasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  { path: 'edit/:id', component: EditUserComponent },
 ];
 
 @NgModule({
