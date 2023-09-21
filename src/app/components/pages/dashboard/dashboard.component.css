@@ -169,6 +169,16 @@ input[type="radio"] {
     top: 10px;
     right: 10px;
   }
+
+  .users .edit-status .status {
+    position: absolute;
+    top: 25px;
+    right: 325%;
+  }
+
+  .users .edit-status .status span {
+    display: none;
+  }
 }
 
 @media (max-width: 603px) {
@@ -176,6 +186,16 @@ input[type="radio"] {
     position: absolute;
     margin-top: 45px;
     left: 15px;
+  }
+
+  .users .edit-status .status {
+    position: absolute;
+    top: -20px;
+    right: 85%;
+  }
+
+  .users .edit-status .status span {
+    display: none;
   }
 }
 

@@ -24,7 +24,6 @@ import { NewPasswordComponent } from './components/pages/new-password/new-passwo
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { ProfileComponent } from './components/layout/profile/profile.component';
-import { UsersComponent } from './components/layout/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditUserComponent } from './components/pages/edit-user/edit-user.component';
 
@@ -41,7 +40,6 @@ import { EditUserComponent } from './components/pages/edit-user/edit-user.compon
     DashboardComponent,
     HeaderComponent,
     ProfileComponent,
-    UsersComponent,
     EditUserComponent,
   ],
   imports: [
