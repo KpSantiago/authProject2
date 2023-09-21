@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  Input,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -17,6 +18,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
+  @Input() search!: string;
+
   @ViewChild('table') table!: ElementRef<HTMLTableElement>;
   @ViewChild('usersContainer') usersC!: ElementRef<HTMLElement>;
   @ViewChild('emailInp') emailInp!: ElementRef<any>;
@@ -109,12 +112,5 @@ export class UsersComponent {
       sessionStorage.setItem('theme', theme);
     }
     this.route.navigate([`edit/${id}`]);
-  }
-
-  async searchUsers(event: any) {
-    const value = event.target.value;
-    this.usersArr = this.allUsersArr.filter((users) => {
-      return users.name.toLowerCase().includes(value.toLowerCase());
-    });
   }
 }

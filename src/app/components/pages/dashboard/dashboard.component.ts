@@ -21,8 +21,6 @@ import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  @Output() thm!: string;
-
   @ViewChild('form') form!: ElementRef<HTMLDivElement>;
   @ViewChild('table') table!: ElementRef<HTMLTableElement>;
   @ViewChild('emailInp') emailInp!: ElementRef<HTMLInputElement>;
@@ -42,6 +40,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   editForm!: FormGroup;
   emailUser: any = '';
   usersId!: any;
+
+  search?: string;
 
   allUsersArr!: IAuth[];
   usersArr!: IAuth[];
@@ -171,7 +171,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   async searchUsers(event: any) {
     const value = event.target.value;
-    this.usersArr = this.allUsersArr.filter((users) => {
+
+    this.usersArr = this.usersArr = this.allUsersArr.filter((users) => {
       return users.name.toLowerCase().includes(value.toLowerCase());
     });
   }
