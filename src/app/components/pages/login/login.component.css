@@ -16,6 +16,16 @@
   box-shadow: 0 0 50px 2px rgba(0, 0, 0, 0.25);
 }
 
+@media (max-width: 1392px) {
+  .loginContainer {
+    width: 70vw;
+    height: fit-content;
+    display: column;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 993px) {
   .loginContainer {
     width: 70vw;

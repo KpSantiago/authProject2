@@ -46,7 +46,7 @@ a:hover {
   color: var(--green);
 }
 
-@media (max-width: 993px) {
+@media (max-width: 1392px) {
   .apContainer {
     display: none;
     width: 0;
