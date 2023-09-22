@@ -59,18 +59,18 @@
     </div>
 
     <div class="form-group cpf-group" #cpfGroup>
-      <label for="cpf">CPF:</label
+      <label for="cpf">CNPJ:</label
       ><input
         type="text"
         formControlName="cpf"
         name="cpf"
         id="cpf"
-        placeHolder="CPF do usuário"
+        placeHolder="CNPJ do usuário"
       />
       <div class="errors" *ngIf="cpf!.invalid && formDir.submitted">
         <p *ngIf="cpf!.errors?.['required']">Este campo é obrigatório!</p>
-        <p *ngIf="cpf!.errors?.['minLengthError']">No mínimo 11 caracteres!</p>
-        <p *ngIf="cpf!.errors?.['maxLengthError']">No máximo 11 caracteres!</p>
+        <p *ngIf="cpf!.errors?.['minLengthError']">No mínimo 14 caracteres!</p>
+        <p *ngIf="cpf!.errors?.['maxLengthError']">No máximo 14 caracteres!</p>
       </div>
     </div>
 

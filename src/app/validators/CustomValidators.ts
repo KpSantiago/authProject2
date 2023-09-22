@@ -49,7 +49,7 @@ export class CustomValidators {
     return null;
   }
 
-  static maxLengthcpf(value: FormControl, max = 11) {
+  static maxLengthcpf(value: FormControl, max = 14) {
     let valueArray = value.value.split('');
 
     if (value && value.value !== '') {
