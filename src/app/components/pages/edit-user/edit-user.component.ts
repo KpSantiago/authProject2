@@ -27,7 +27,7 @@ export class EditUserComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private cookieService: CookieService
   ) {}
-  theme = sessionStorage.getItem('theme');
+  theme = localStorage.getItem('theme');
   editForm!: FormGroup;
   user!: IAuth[];
 

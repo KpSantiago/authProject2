@@ -41,7 +41,8 @@ a:hover {
 }
 
 .form-group input {
-  max-width: 100%;
+  width: auto;
+  max-width: 500px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid black;
@@ -73,6 +74,12 @@ a:hover {
   max-width: 100%;
 }
 
+@media (max-width: 1235px) {
+  .formContainer {
+    width: 100%;
+  }
+}
+
 @media (max-width: 993px) {
   .formContainer {
     width: 70vw;
@@ -85,6 +92,7 @@ a:hover {
 
   .forms {
     margin: 30px 15%;
+    max-height: 50%;
     column-gap: 30px;
   }
 

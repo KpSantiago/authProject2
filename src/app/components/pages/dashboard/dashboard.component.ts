@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { CustomValidators } from 'src/app/validators/CustomValidators';
 
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons';
+import { faSearch, faCloud, faFilter } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,8 +37,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   moon = faMoon;
   sun = faSun;
+  searchI = faSearch;
+  themeI = faCloud;
+  filterI = faFilter;
 
   editForm!: FormGroup;
+  filterForm!: FormGroup;
+  fltr!: string;
+
   emailUser: any = '';
   usersId!: any;
 
@@ -65,6 +72,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       roles: ['', [CustomValidators.requiredValidator]],
       email: ['', [Validators.required]],
     });
+
+    // filter form
+    this.filterForm = this.formBuilder.group({
+      filter: [''],
+    });
   }
 
   get roles() {
@@ -75,39 +87,69 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return this.editForm.get('email');
   }
 
+  get filter() {
+    return this.filterForm.get('filter');
+  }
+
   ngAfterViewInit(): void {
     const theme = this.acRoute.snapshot.queryParamMap.get('theme');
-    const themeSession = sessionStorage.getItem('theme');
+    const themeL = localStorage.getItem('theme');
     if (this.cookieService.get('daskde') != '4') {
       this.form.nativeElement.style.display = 'none';
     }
 
     if (theme == 'night') {
       this.dashboard.nativeElement.classList.toggle('night');
-    } else if (themeSession == 'night') {
+      localStorage.setItem('theme', 'night');
+    } else if (themeL == 'night') {
       this.dashboard.nativeElement.classList.toggle('night');
     } else {
       return;
     }
   }
 
-  requestUsers(): void {
+  requestUsers() {
     this.authService
       .getUsers(this.cookieService.get('ashlesd'))
       .subscribe((data) => {
         if (data) {
           this.usersArr = data;
-          this.allUsersArr = data;
-          // não usar ainda:
-          // .sort((o1: IAuth, o2: IAuth) => {
-          //   if (o1.id! > o2.id!) {
-          //     return 1;
-          //   }
-          //   if (o1.id! < o2.id!) {
-          //     return -1;
-          //   }
-          //   return 0;
-          // });
+
+          if (this.fltr == 'id') {
+            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
+              if (o1.id! > o2.id!) {
+                return 1;
+              }
+              if (o1.id! < o2.id!) {
+                return -1;
+              }
+              return 0;
+            });
+          } else if (this.fltr == 'alphabeticalOrder') {
+            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
+              let p1 = o1.name.split('')[0];
+              let p2 = o2.name.split('')[0];
+              if (p1 > p2) {
+                return 1;
+              }
+              if (p1 < p2) {
+                return -1;
+              }
+              return 0;
+            });
+          } else if (this.fltr == 'roleId') {
+            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
+              if (o1.roleId! < o2.roleId!) {
+                return 1;
+              }
+              if (o1.roleId! > o2.roleId!) {
+                return -1;
+              }
+              return 0;
+            });
+          } else {
+            this.allUsersArr = data;
+          }
 
           // online verification
           this.usersId = this.usersArr
@@ -130,7 +172,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       });
   }
-
   // actions
   cancel(): void {
     location.reload();
@@ -140,24 +181,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.route.navigate([`edit/${id}`]);
   }
 
-  async edit() {
-    if (this.editForm.invalid) {
-      return;
-    }
-
-    const user = {
-      name: this.userEdit[0]!.name,
-      email: this.userEdit[0]!.email,
-      roleId: Number(this.editForm.get('roles')!.value),
-    };
-
-    await this.authService
-      .updateUser(user, this.userEdit[0].id!, this.cookieService.get('ashlesd'))
-      .subscribe();
-
-    setTimeout(() => {
-      location.reload();
-    }, 100);
+  filters() {
+    this.fltr = this.filterForm.value.filter;
+    this.requestUsers();
   }
 
   async searchUsers(event: any) {
@@ -173,8 +199,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   lightTheme() {
-    if (sessionStorage.getItem('theme')) {
-      sessionStorage.removeItem('theme');
+    if (localStorage.getItem('theme')) {
+      localStorage.removeItem('theme');
     }
     return;
   }

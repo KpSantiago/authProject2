@@ -105,12 +105,13 @@
 .button button {
   background-color: #295e59;
   color: #fff;
-  width: 70px;
+  min-width: 70px;
   height: 26px;
   font-size: 14px;
   border: 1px solid #295e5955;
   border-radius: 5px;
   margin-left: 5px;
+  padding: 0 4px;
 }
 
 @media (max-width: 625px) {

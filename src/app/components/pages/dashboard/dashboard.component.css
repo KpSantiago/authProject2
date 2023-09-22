@@ -35,10 +35,22 @@
 }
 
 .dashboardContainer.night .form-group div:first-child,
-.dashboardContainer.night .form-group label {
+.dashboardContainer.night .form-group label:not(.filters) {
   width: 50%;
   border-bottom: 1px solid #f5f5f5;
   margin-bottom: 5px;
+}
+
+.dashboardContainer.night .filters::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: -23px;
+  background-color: #000;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #f5f5f5;
 }
 
 input[type="radio"] {
@@ -224,7 +236,7 @@ input[type="radio"] {
 }
 
 .form-group div:first-child,
-.form-group label {
+.form-group label:not(.filters) {
   width: 50%;
   border-bottom: 1px solid #000;
   margin-bottom: 5px;
@@ -269,7 +281,7 @@ input[type="radio"] {
 }
 
 .theme ~ .t {
-  margin-left: 15px;
+  margin-left: 8px;
   display: flex;
   align-items: center;
 }
@@ -298,8 +310,8 @@ input[type="radio"] {
   height: 12px;
 }
 
-.filter ~ p {
-  margin-left: 15px;
+.filter ~ form {
+  margin-left: 8px;
 }
 
 .filter ~ p div {
@@ -310,7 +322,58 @@ input[type="radio"] {
   background-color: #f5f5f5;
 }
 
-.dashboardContainer.night .forms input,
+.filter ~ form input {
+  fill: #295e59;
+  outline: none;
+}
+
+.filters {
+  position: relative;
+}
+
+.filters::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: -23px;
+  background-color: #f5f5f5;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.filter ~ form input:checked ~ .filters::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: -17px;
+  background-color: #295e59;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  clip-path: circle();
+  animation: anima 0.2s linear forwards;
+}
+
+@keyframes anima {
+  0% {
+    height: 1px;
+    width: 1px;
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+    width: 7.5px;
+    height: 7.5px;
+    top: 10.1px;
+    left: -20.2px;
+  }
+}
+
+.filter ~ form input:checked .dashboardContainer.night .forms input,
 .dashboardContainer.night .forms .searchInput input,
 .dashboardContainer.night .forms select {
   background-color: #000;
@@ -321,6 +384,7 @@ input[type="radio"] {
 @media (max-width: 1376px) {
   .dashboardContainer .main {
     flex-direction: column-reverse;
+    align-items: center;
   }
 
   .forms {
@@ -335,5 +399,11 @@ input[type="radio"] {
 @media (max-width: 678px) {
   .main {
     padding: 90px 30px;
+  }
+}
+
+@media (max-width: 350px) {
+  .forms {
+    transform: scale(0.8);
   }
 }

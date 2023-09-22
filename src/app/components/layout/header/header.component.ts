@@ -44,10 +44,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const theme = this.acRoute.snapshot.queryParamMap.get('theme');
-    const themeSession = sessionStorage.getItem('theme');
+    const themeL = localStorage.getItem('theme');
     if (theme == 'night') {
       this.header.nativeElement.classList.toggle('night');
-    } else if (themeSession == 'night') {
+    } else if (themeL == 'night') {
       this.header.nativeElement.classList.toggle('night');
     } else {
       return;
