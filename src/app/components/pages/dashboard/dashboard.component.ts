@@ -195,7 +195,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   theme() {
-    this.route.navigate(['/dashboard?theme=night']);
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', 'night');
+    }
   }
 
   lightTheme() {
