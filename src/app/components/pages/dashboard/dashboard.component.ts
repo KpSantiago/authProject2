@@ -94,9 +94,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     const theme = this.acRoute.snapshot.queryParamMap.get('theme');
     const themeL = localStorage.getItem('theme');
-    if (this.cookieService.get('daskde') != '4') {
-      this.form.nativeElement.style.display = 'none';
-    }
 
     if (theme == 'night') {
       this.dashboard.nativeElement.classList.toggle('night');
