@@ -46,7 +46,7 @@ export class NewPasswordComponent {
     };
 
     await this.authService.updatePass(senha, id).subscribe((msg) => {
-      // console.log(msg);
+      console.log(msg);
     });
 
     this.route.navigate(['/']);

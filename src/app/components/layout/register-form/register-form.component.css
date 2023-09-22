@@ -112,6 +112,9 @@
 }
 
 @media (max-width: 443px) {
+  .formContainer {
+    border: none;
+  }
   .formContainer h1 {
     font-size: 30px;
   }
@@ -125,6 +128,7 @@
     width: 100%;
     border-radius: 5px;
     padding: 4px 15px;
+    border: 1px solid #0005;
   }
 
   .formContainer .forms .form-group label {
@@ -143,6 +147,10 @@
 }
 
 @media (max-width: 353px) {
+  .formContainer {
+    width: 90vw;
+  }
+
   .formContainer h1 {
     font-size: 25px;
   }

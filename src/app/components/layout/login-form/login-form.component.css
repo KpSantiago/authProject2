@@ -76,7 +76,7 @@ a:hover {
 
 @media (max-width: 1235px) {
   .formContainer {
-    width: 100%;
+    max-width: 100%;
   }
 }
 
