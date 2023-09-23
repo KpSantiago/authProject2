@@ -124,8 +124,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             });
           } else if (this.fltr == 'alphabeticalOrder') {
             this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
-              let p1 = o1.name.split('')[0];
-              let p2 = o2.name.split('')[0];
+              let p1 = o1.name.split('')[0].toLowerCase();
+              let p2 = o2.name.split('')[0].toLowerCase();
               if (p1 > p2) {
                 return 1;
               }
