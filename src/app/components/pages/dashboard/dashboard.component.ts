@@ -112,42 +112,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (data) {
           this.usersArr = data;
 
-          if (this.fltr == 'id') {
-            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
-              if (o1.id! > o2.id!) {
-                return 1;
-              }
-              if (o1.id! < o2.id!) {
-                return -1;
-              }
-              return 0;
-            });
-          } else if (this.fltr == 'alphabeticalOrder') {
-            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
-              let p1 = o1.name.split('')[0].toLowerCase();
-              let p2 = o2.name.split('')[0].toLowerCase();
-              if (p1 > p2) {
-                return 1;
-              }
-              if (p1 < p2) {
-                return -1;
-              }
-              return 0;
-            });
-          } else if (this.fltr == 'roleId') {
-            this.allUsersArr = data.sort((o1: IAuth, o2: IAuth) => {
-              if (o1.roleId! < o2.roleId!) {
-                return 1;
-              }
-              if (o1.roleId! > o2.roleId!) {
-                return -1;
-              }
-              return 0;
-            });
-          } else {
-            this.allUsersArr = data;
-          }
-
           // online verification
           this.usersId = this.usersArr
             .filter((user) => user.id == this.cookieService.get('fdsgescr'))
@@ -178,9 +142,45 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.route.navigate([`edit/${id}`]);
   }
 
-  filters() {
+  filters(users: any) {
     this.fltr = this.filterForm.value.filter;
-    this.requestUsers();
+    // this.requestUsers();
+
+    if (this.filterForm.value.filter == 'id') {
+      this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
+        if (o1.id! > o2.id!) {
+          return 1;
+        }
+        if (o1.id! < o2.id!) {
+          return -1;
+        }
+        return 0;
+      });
+    } else if (this.fltr == 'alphabeticalOrder') {
+      this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
+        let p1 = o1.name.split('')[0].toLowerCase();
+        let p2 = o2.name.split('')[0].toLowerCase();
+        if (p1 > p2) {
+          return 1;
+        }
+        if (p1 < p2) {
+          return -1;
+        }
+        return 0;
+      });
+    } else if (this.fltr == 'roleId') {
+      this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
+        if (o1.roleId! < o2.roleId!) {
+          return 1;
+        }
+        if (o1.roleId! > o2.roleId!) {
+          return -1;
+        }
+        return 0;
+      });
+    } else {
+      this.usersArr = this.allUsersArr;
+    }
   }
 
   async searchUsers(event: any) {

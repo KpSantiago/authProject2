@@ -140,7 +140,7 @@
           <div class="filter">
             <fa-icon [icon]="filterI"></fa-icon> Filtros:
           </div>
-          <form [formGroup]="filterForm" (change)="filters()">
+          <form [formGroup]="filterForm" (change)="filters(usersArr)">
             <p>
               <input type="radio" formControlName="filter" id="id" value="id" />
               <label for="id" class="filters">Filtar por ID</label>
