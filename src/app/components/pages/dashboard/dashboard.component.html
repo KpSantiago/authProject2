@@ -1,6 +1,6 @@
 <div class="dashboardContainer" #dashboard>
   <app-header></app-header>
-  <div class="main">
+  <div class="main" *ngIf="allUsersArr; else loading">
     <div #table class="table">
       <div #usersContainer class="uContainer">
         <div *ngFor="let user of usersArr" class="usersContainer">
@@ -53,42 +53,6 @@
               </div>
             </div>
           </div>
-          <ng-template #tr>
-            <div>
-              <div *ngFor="let user of userEdit" class="usersContainer">
-                <div class="profile">
-                  <img src="../../../../assets/profile.svg" alt="" />
-                  <div>
-                    <span>{{ user.name }}</span>
-                    <span>{{ user.Roles!.Role }}</span>
-                  </div>
-                </div>
-                <div class="email">{{ user.email }}</div>
-                <div class="edit-status">
-                  <div class="edit-block">
-                    <div *ngIf="roleId == '4'" (click)="editAction(user.id!)">
-                      <img
-                        src="../../../../assets/edit.svg"
-                        alt="editar"
-                        title="editar"
-                        class="actions"
-                      />
-
-                      Editar
-                    </div>
-                    <div *ngIf="roleId != '4'">
-                      <img
-                        src="../../../../assets/block.svg"
-                        alt="bloqueado"
-                        title="bloqueado"
-                      />
-                      Bloqueado
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
         </div>
       </div>
     </div>
@@ -171,4 +135,11 @@
       </form>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="loading">
+      <span class="loader"></span>
+
+      <div><p>Carregando...</p></div>
+    </div>
+  </ng-template>
 </div>

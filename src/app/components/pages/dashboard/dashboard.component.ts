@@ -35,25 +35,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder
   ) {}
 
+  // icons
   moon = faMoon;
   sun = faSun;
   searchI = faSearch;
   themeI = faCloud;
   filterI = faFilter;
 
+  // forms
   editForm!: FormGroup;
   filterForm!: FormGroup;
-  fltr!: string;
 
+  // adicionals vars
   emailUser: any = '';
   usersId!: any;
 
-  search?: string;
-
+  // users arrays
   allUsersArr!: IAuth[];
   usersArr!: IAuth[];
 
-  userEdit!: IAuth[];
   isLoged!: boolean;
   roleId = this.cookieService.get('daskde');
 
@@ -111,6 +111,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         if (data) {
           this.usersArr = data;
+          this.allUsersArr = data;
 
           // online verification
           this.usersId = this.usersArr
@@ -143,9 +144,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   filters(users: any) {
-    this.fltr = this.filterForm.value.filter;
-    // this.requestUsers();
-
     if (this.filterForm.value.filter == 'id') {
       this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
         if (o1.id! > o2.id!) {
@@ -156,7 +154,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         return 0;
       });
-    } else if (this.fltr == 'alphabeticalOrder') {
+    } else if (this.filterForm.value.filter == 'alphabeticalOrder') {
       this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
         let p1 = o1.name.split('')[0].toLowerCase();
         let p2 = o2.name.split('')[0].toLowerCase();
@@ -168,7 +166,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
         return 0;
       });
-    } else if (this.fltr == 'roleId') {
+    } else if (this.filterForm.value.filter == 'roleId') {
       this.usersArr = users.sort((o1: IAuth, o2: IAuth) => {
         if (o1.roleId! < o2.roleId!) {
           return 1;
@@ -185,10 +183,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   async searchUsers(event: any) {
     const value = event.target.value;
-
-    this.usersArr = this.usersArr = this.allUsersArr.filter((users) => {
-      return users.name.toLowerCase().includes(value.toLowerCase());
-    });
+    console.log(value);
+    console.log(this.allUsersArr);
+    this.usersArr = this.allUsersArr
+      .filter((users) => {
+        return users.name.toLowerCase().includes(value.toLowerCase());
+      })
+      .map((data) => data);
   }
 
   theme() {
