@@ -26,6 +26,7 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { ProfileComponent } from './components/layout/profile/profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditUserComponent } from './components/pages/edit-user/edit-user.component';
+import { BriefingComponent } from './components/pages/briefing/briefing.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { EditUserComponent } from './components/pages/edit-user/edit-user.compon
     HeaderComponent,
     ProfileComponent,
     EditUserComponent,
+    BriefingComponent,
   ],
   imports: [
     BrowserModule,

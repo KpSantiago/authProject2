@@ -22,6 +22,10 @@ header.night {
   border-bottom: 0.5px solid #fff7;
 }
 
+header.night a {
+  color: #fff;
+}
+
 span {
   font-size: 14px;
 }
@@ -42,8 +46,10 @@ span {
   background-color: #295e59;
   color: #fff;
   cursor: pointer;
-  width: 77px;
-  height: 32px;
+  min-width: 77px;
+  min-height: 32px;
+  max-width: 77px;
+  max-height: 32px;
   display: flex;
   align-items: center;
   border-radius: 6px;
@@ -51,7 +57,109 @@ span {
   padding-left: 5px;
 }
 
-@media (max-width: 625px) {
+.profile-menu {
+  width: 55%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  gap: 30px;
+}
+
+.profile-menu .menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+}
+
+.profile-menu a {
+  text-decoration: none;
+  color: #000;
+  position: relative;
+}
+
+.profile-menu a::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  background-color: #295e59;
+  width: 0;
+  height: 2px;
+  border-radius: 10px;
+  transition: all 0.35s;
+}
+
+.profile-menu li:hover a::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  background-color: #295e59;
+  width: 100%;
+  height: 2px;
+}
+
+.profile {
+  position: relative;
+}
+/* 
+.profile > .prof-logout {
+  width: 0;
+  height: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.profile > img,
+.profile > span {
+  z-index: 99;
+}
+
+.profile > .prof-logout {
+  background-color: #f5f5f5;
+  width: 200px;
+  border: 0.5px solid #0004;
+  position: absolute;
+  z-index: 3;
+  right: -40px;
+  top: 52.05px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.profile.actived > .prof-logout {
+  background-color: #fafafa;
+  height: 200px;
+  width: 200px;
+}
+
+.profile.actived > .prof-logout * {
+  width: auto;
+  height: auto;
+}
+
+.profile.actived > .prof-logout .logout {
+
+}
+
+.profile.actived > .prof-logout .logout span {
+  color: #fff;
+} */
+
+.prof-logout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+@media (max-width: 1040px) {
   .mH {
     width: 30px;
     height: 30px;
@@ -99,8 +207,9 @@ span {
   }
 
   input[type="checkbox"]:checked ~ header {
-    width: 250px;
-    height: 300px;
+    min-width: 250px;
+    max-width: 300px;
+    height: 500px;
     top: 0;
     left: 0;
   }

@@ -20,6 +20,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('header') header!: ElementRef<HTMLElement>;
+  @ViewChild('profile') profile!: ElementRef<HTMLElement>;
+
   userName!: string;
 
   constructor(
@@ -45,6 +47,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     const theme = this.acRoute.snapshot.queryParamMap.get('theme');
     const themeL = localStorage.getItem('theme');
+
+    this.profile.nativeElement.addEventListener('click', () => {
+      this.profile.nativeElement.classList.toggle('actived');
+      console.log('deu');
+    });
+
     if (theme == 'night') {
       this.header.nativeElement.classList.toggle('night');
     } else if (themeL == 'night') {

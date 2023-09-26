@@ -72,6 +72,7 @@ input[type="radio"] {
 .usersContainer > .users {
   background-color: #fff;
   width: 100%;
+  max-width: 1300px;
   height: 73px;
   font-size: 14px;
   display: flex;
@@ -127,24 +128,6 @@ input[type="radio"] {
   gap: 4px;
 }
 
-.edit-status .status {
-  color: #a9a9a9;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.edit-status .status .on-off {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.edit-status .status .on-off div {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
-
 @media (max-width: 616px) {
   .uContainer {
     display: flex;
@@ -181,16 +164,6 @@ input[type="radio"] {
     top: 10px;
     right: 10px;
   }
-
-  .users .edit-status .status {
-    position: absolute;
-    top: 25px;
-    right: 325%;
-  }
-
-  .users .edit-status .status span {
-    display: none;
-  }
 }
 
 @media (max-width: 603px) {
@@ -198,16 +171,6 @@ input[type="radio"] {
     position: absolute;
     margin-top: 45px;
     left: 15px;
-  }
-
-  .users .edit-status .status {
-    position: absolute;
-    top: -20px;
-    right: 85%;
-  }
-
-  .users .edit-status .status span {
-    display: none;
   }
 }
 
@@ -353,7 +316,7 @@ input[type="radio"] {
 
 .loading {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -468,6 +431,14 @@ input[type="radio"] {
   border: 0.5px solid #fff4;
 }
 
+@media (min-width: 2000px) {
+  .main {
+    display: flex;
+    gap: 60px;
+    padding: 0 20%;
+  }
+}
+
 @media (max-width: 1376px) {
   .dashboardContainer .main {
     flex-direction: column-reverse;
@@ -483,7 +454,7 @@ input[type="radio"] {
   }
 }
 
-@media (max-width: 678px) {
+@media (max-width: 1040px) {
   .main {
     padding: 90px 30px;
   }

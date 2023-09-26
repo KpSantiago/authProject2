@@ -1,138 +1,123 @@
 <div class="dashboardContainer" #dashboard>
-  <app-header></app-header>
-  <div class="main" *ngIf="allUsersArr; else loading">
-    <div #table class="table">
-      <div #usersContainer class="uContainer">
-        <div *ngFor="let user of usersArr" class="usersContainer">
-          <div class="users">
-            <div class="profile">
-              <img src="../../../../assets/profile.svg" alt="" />
-              <div>
-                <span>{{ user.name }}</span>
-                <span>{{ user.Roles!.Role }}</span>
-              </div>
-            </div>
-            <div class="email">{{ user.email }}</div>
-            <div class="edit-status">
-              <div class="edit-block">
-                <div *ngIf="roleId == '4'" (click)="editAction(user.id!)">
-                  <img
-                    src="../../../../assets/edit.svg"
-                    alt="editar"
-                    title="editar"
-                    class="actions"
-                  />
-                  Editar
+  <div *ngIf="allUsersArr; else loading">
+    <app-header></app-header>
+    <div class="main">
+      <div #table class="table">
+        <div #usersContainer class="uContainer">
+          <div *ngFor="let user of usersArr" class="usersContainer">
+            <div class="users">
+              <div class="profile">
+                <img src="../../../../assets/profile.svg" alt="" />
+                <div>
+                  <span>{{ user.name }}</span>
+                  <span>{{ user.Roles!.Role }}</span>
                 </div>
-
-                <div class="status">
-                  <div
-                    class="on-off"
-                    *ngIf="isLoged == true && usersId[0] == user.id; else off"
-                  >
-                    <div
-                      [ngStyle]="{
-                        'background-color': '#0f4',
-                        'box-shadow': ' 0 0 3px 0 #0f4,0 0 4px 0px #0f4'
-                      }"
-                    ></div>
-                    <span>Online</span>
+              </div>
+              <div class="email">{{ user.email }}</div>
+              <div class="edit-status">
+                <div class="edit-block">
+                  <div *ngIf="roleId == '4'" (click)="editAction(user.id!)">
+                    <img
+                      src="../../../../assets/edit.svg"
+                      alt="editar"
+                      title="editar"
+                      class="actions"
+                    />
+                    Editar
                   </div>
-                  <ng-template #off>
-                    <div class="on-off">
-                      <div
-                        [ngStyle]="{
-                          'background-color': 'red',
-                          'box-shadow': '0 0 3px 0 red, 0 0 4px 0px red'
-                        }"
-                      ></div>
-                      <span>Offline</span>
-                    </div>
-                  </ng-template>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <ng-template #error>
-      <div
-        class="errors"
-        [ngStyle]="{ 'min-width': 'fit-content', 'margin-right': '30%' }"
-      >
-        <p>Usuário não encontrado! Verifique se você pesquisou corretamente.</p>
-      </div>
-    </ng-template>
-
-    <div class="actionsAndFilters">
-      <form class="forms acoes">
-        <h3>Ações</h3>
-        <div class="form-group">
-          <label for="search"
-            ><fa-icon [icon]="searchI"></fa-icon> Buscar usuário:</label
-          >
-          <div class="searchInput">
-            <input
-              type="search"
-              id="search"
-              class="search"
-              (input)="searchUsers($event)"
-            />
-            <button type="submit" (click)="requestUsers()">Cancelar</button>
-          </div>
+      <ng-template #error>
+        <div
+          class="errors"
+          [ngStyle]="{ 'min-width': 'fit-content', 'margin-right': '30%' }"
+        >
+          <p>
+            Usuário não encontrado! Verifique se você pesquisou corretamente.
+          </p>
         </div>
-        <div class="form-group">
-          <div class="theme">
-            <fa-icon [icon]="themeI"></fa-icon> Alterar tema:
-          </div>
-          <div class="t">
-            <a href="dashboard" (click)="lightTheme()">
-              <fa-icon [icon]="sun"></fa-icon>
-              Claro
-            </a>
-          </div>
-          <div class="t">
-            <a href="dashboard?theme=night" (click)="theme()">
-              <fa-icon [icon]="moon"></fa-icon>
-              Escuro
-            </a>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="filter">
-            <fa-icon [icon]="filterI"></fa-icon> Filtros:
-          </div>
-          <form [formGroup]="filterForm" (change)="filters(usersArr)">
-            <p>
-              <input type="radio" formControlName="filter" id="id" value="id" />
-              <label for="id" class="filters">Filtar por ID</label>
-            </p>
+      </ng-template>
 
-            <p>
+      <div class="actionsAndFilters">
+        <form class="forms acoes">
+          <h3>Ações</h3>
+          <div class="form-group">
+            <label for="search"
+              ><fa-icon [icon]="searchI"></fa-icon> Buscar usuário:</label
+            >
+            <div class="searchInput">
               <input
-                type="radio"
-                formControlName="filter"
-                id="roleId"
-                value="roleId"
+                type="search"
+                id="search"
+                class="search"
+                (input)="searchUsers($event)"
               />
-              <label for="roleId" class="filters"
-                >Filtar por n. de acesso</label
-              >
-            </p>
+              <button type="submit" (click)="requestUsers()">Cancelar</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="theme">
+              <fa-icon [icon]="themeI"></fa-icon> Alterar tema:
+            </div>
+            <div class="t">
+              <a href="dashboard" (click)="lightTheme()">
+                <fa-icon [icon]="sun"></fa-icon>
+                Claro
+              </a>
+            </div>
+            <div class="t">
+              <a href="dashboard?theme=night" (click)="theme()">
+                <fa-icon [icon]="moon"></fa-icon>
+                Escuro
+              </a>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="filter">
+              <fa-icon [icon]="filterI"></fa-icon> Filtros:
+            </div>
+            <form [formGroup]="filterForm" (change)="filters(usersArr)">
+              <p>
+                <input
+                  type="radio"
+                  formControlName="filter"
+                  id="id"
+                  value="id"
+                />
+                <label for="id" class="filters">Filtar por ID</label>
+              </p>
 
-            <p>
-              <input
-                type="radio"
-                formControlName="filter"
-                value="alphabeticalOrder"
-                id="alphOrder"
-              /><label for="alphOrder" class="filters">Ordem alfabética</label>
-            </p>
-          </form>
-        </div>
-      </form>
+              <p>
+                <input
+                  type="radio"
+                  formControlName="filter"
+                  id="roleId"
+                  value="roleId"
+                />
+                <label for="roleId" class="filters"
+                  >Filtar por n. de acesso</label
+                >
+              </p>
+
+              <p>
+                <input
+                  type="radio"
+                  formControlName="filter"
+                  value="alphabeticalOrder"
+                  id="alphOrder"
+                /><label for="alphOrder" class="filters"
+                  >Ordem alfabética</label
+                >
+              </p>
+            </form>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <ng-template #loading>
