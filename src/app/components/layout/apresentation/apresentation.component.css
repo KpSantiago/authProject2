@@ -13,9 +13,8 @@ a {
   transition: all 0.35s;
 }
 
-.imageBox img {
-  max-width: 254px;
-  max-height: 125px;
+.imageBox {
+  font-size: 36px;
 }
 
 .actions {
