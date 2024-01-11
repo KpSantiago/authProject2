@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseApiUrl = 'https://auth-api-gbl5.onrender.com';
+  private baseApiUrl = 'https://auth-api-cg6u.onrender.com';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   register(data: IAuth): Observable<IAuth> {
     const httpHeaders = new HttpHeaders();

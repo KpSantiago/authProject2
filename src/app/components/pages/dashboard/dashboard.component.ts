@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   searchI = faSearch;
   themeI = faCloud;
   filterI = faFilter;
+  reload = '';
 
   // forms
   editForm!: FormGroup;
